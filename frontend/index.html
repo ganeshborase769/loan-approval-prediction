@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>LoanIQ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav><b>Loan<span>IQ</span></b><i id="navUser"></i><button id="logout" class="ghost hidden">Logout</button></nav>
+    <section id="auth">
+        <div class="intro"><small>AI POWERED DECISION SUPPORT</small>
+            <h1>Smarter loan decisions,<br><span>in seconds.</span></h1>
+            <p>Apply, predict and track your loan applications in one dashboard.</p>
+        </div>
+        <div class="card">
+            <div class="tabs"><button id="lt">Login</button><button id="rt">Create account</button></div>
+            <form id="lf"><input id="le" type="email" placeholder="Email" required><input id="lp" type="password"
+                    placeholder="Password" required><button>Sign in</button></form>
+            <form id="rf" class="hidden"><input id="rn" placeholder="Full name" required><input id="re" type="email"
+                    placeholder="Email" required><input id="rp" type="password" minlength="6"
+                    placeholder="Password (6+)" required><button>Create account</button></form>
+            <p id="msg"></p>
+        </div>
+    </section>
+    <section id="dash" class="hidden">
+        <header>
+            <div><small>DASHBOARD</small>
+                <h2>Welcome, <span id="welcome"></span></h2>
+            </div><button onclick="document.querySelector('#loan').scrollIntoView()">+ New application</button>
+        </header>
+        <div class="stats">
+            <div>Total<strong id="total">0</strong></div>
+            <div>Approved<strong id="approved">0</strong></div>
+            <div>Rejected<strong id="rejected">0</strong></div>
+            <div>Approval rate<strong id="rate">0%</strong></div>
+        </div>
+        <div class="card" id="loan">
+            <h3>Loan application</h3>
+            <form id="form" class="grid">
+                <label>Gender<select id="Gender">
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select></label><label>Married<select id="Married">
+                        <option>Yes</option>
+                        <option>No</option>
+                    </select></label><label>Dependents<select id="Dependents">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3+</option>
+                    </select></label><label>Education<select id="Education">
+                        <option>Graduate</option>
+                        <option>Not Graduate</option>
+                    </select></label><label>Self Employed<select id="Self_Employed">
+                        <option>No</option>
+                        <option>Yes</option>
+                    </select></label>
+                <label>Applicant Income<input id="ApplicantIncome" type="number" required></label><label>Coapplicant
+                    Income<input id="CoapplicantIncome" type="number" value="0" required></label><label>Loan
+                    Amount<input id="LoanAmount" type="number" required></label><label>Loan Term<select
+                        id="Loan_Amount_Term">
+                        <option>180</option>
+                        <option>240</option>
+                        <option>300</option>
+                        <option selected>360</option>
+                        <option>480</option>
+                    </select></label><label>Credit History<select id="Credit_History">
+                        <option value="1">Good</option>
+                        <option value="0">Poor</option>
+                    </select></label><label>Property Area<select id="Property_Area">
+                        <option>Urban</option>
+                        <option>Semiurban</option>
+                        <option>Rural</option>
+                    </select></label><button class="full">Predict Approval</button>
+            </form>
+            <div id="result" class="result hidden"></div>
+        </div>
+        <div class="card">
+            <h3>Prediction history</h3>
+            <div class="table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Income</th>
+                            <th>Loan</th>
+                            <th>Credit</th>
+                            <th>Area</th>
+                            <th>Result</th>
+                            <th>Confidence</th>
+                        </tr>
+                    </thead>
+                    <tbody id="history"></tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card analytics">
+            <div class="section-head">
+                <div><small>MODEL ANALYTICS</small>
+                    <h3>Machine Learning Performance</h3>
+                </div><strong id="bestModel">Best model: —</strong>
+            </div>
+            <div class="analytics-cards">
+                <div>Dataset rows<strong id="dsRows">—</strong></div>
+                <div>Approved<strong id="dsApproved">—</strong></div>
+                <div>Rejected<strong id="dsRejected">—</strong></div>
+            </div>
+            <div class="table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Accuracy</th>
+                            <th>Precision</th>
+                            <th>Recall</th>
+                            <th>F1 Score</th>
+                        </tr>
+                    </thead>
+                    <tbody id="modelMetrics"></tbody>
+                </table>
+            </div>
+            <h4>Confusion Matrix — Best Model</h4>
+            <div id="confusion" class="matrix"></div>
+        </div>
+    </section>
+    <script src="script.js"></script>
+</body>
+
+</html>
